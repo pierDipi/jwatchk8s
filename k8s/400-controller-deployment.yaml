@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jwatch
+  namespace: knative-eventing
+  labels:
+    app: jwatch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jwatch
+  template:
+    metadata:
+      labels:
+        app: jwatch
+    spec:
+      serviceAccountName: knative-eventing-controller
+      containers:
+        - name: jwatch
+          image: docker.io/pierdipi/jwatchk8s:latest
+          imagePullPolicy: Always
+          env:
+            - name: NAMESPACE
+              value: jwatch
+            - name: CONFIG_MAP
+              value: jwatch

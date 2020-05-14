@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+docker build -f k8s/Dockerfile -t pierdipi/jwatchk8s .
+docker push pierdipi/jwatchk8s
